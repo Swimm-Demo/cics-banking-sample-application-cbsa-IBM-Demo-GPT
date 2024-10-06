@@ -63,7 +63,7 @@ classDef Style3 color:#000000,fill:#AA7CB9
 
 ---
 
-The PREMIERE function is used to check if the customer exists and to retrieve the customer information. It first sets the success and failure codes to 'N' and '0' respectively. It then performs the customer check and if a matching customer is not found, it sets the success and failure codes to 'N' and '1' respectively. If a matching customer is found, it then performs the read account database function and returns the account data to the <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="224:15:15" line-data="      * Return the ACCOUNT data to the COMMAREA">`COMMAREA`</SwmToken>.
+The <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="194:1:1" line-data="       PREMIERE SECTION.">`PREMIERE`</SwmToken> section is used to check if the customer exists and to retrieve the customer information. It first sets the success and failure codes to <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="196:4:4" line-data="           MOVE &#39;N&#39; TO COMM-SUCCESS">`N`</SwmToken> and <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="197:4:4" line-data="           MOVE &#39;0&#39; TO COMM-FAIL-CODE">`0`</SwmToken> respectively. It then performs the customer check and if a matching customer is not found, it sets the success and failure codes to <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="196:4:4" line-data="           MOVE &#39;N&#39; TO COMM-SUCCESS">`N`</SwmToken> and <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="217:4:4" line-data="              MOVE &#39;1&#39; TO COMM-FAIL-CODE">`1`</SwmToken> respectively. If a matching customer is found, it then performs the read account database function and returns the account data to the <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="224:15:15" line-data="      * Return the ACCOUNT data to the COMMAREA">`COMMAREA`</SwmToken>.
 
 ```cobol
        PREMIERE SECTION.
@@ -97,7 +97,7 @@ The PREMIERE function is used to check if the customer exists and to retrieve th
 
 ---
 
-The <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="829:1:3" line-data="       CUSTOMER-CHECK SECTION.">`CUSTOMER-CHECK`</SwmToken> function is used to check if the customer exists. It first sets the customer found flag to 'N'. It then performs a CICS HANDLE ABEND and then ends the execution. It then sets the required sort code to the sort code and then performs the customer check. If the customer is found, it sets the customer found flag to 'Y'.
+The <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="829:1:3" line-data="       CUSTOMER-CHECK SECTION.">`CUSTOMER-CHECK`</SwmToken> function is used to check if the customer exists. It first sets the customer found flag to <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="836:4:4" line-data="              MOVE &#39;N&#39; TO CUSTOMER-FOUND">`N`</SwmToken>. It then performs a CICS HANDLE ABEND and then ends the execution. It then sets the required sort code to the sort code and then performs the customer check. If the customer is found, it sets the customer found flag to 'Y'.
 
 ```cobol
        CUSTOMER-CHECK SECTION.
@@ -152,6 +152,8 @@ classDef Style2 color:#000000,fill:#FFFF00
 classDef Style3 color:#000000,fill:#AA7CB9
 ```
 
+After performing <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="829:1:3" line-data="       CUSTOMER-CHECK SECTION.">`CUSTOMER-CHECK`</SwmToken>, in case it was succesasful, <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="194:1:1" line-data="       PREMIERE SECTION.">`PREMIERE`</SwmToken> moves on to perform <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="233:1:5" line-data="       READ-ACCOUNT-DB2 SECTION.">`READ-ACCOUNT-DB2`</SwmToken>.
+
 <SwmSnippet path="/src/base/cobol_src/INQACCCU.cbl" line="233">
 
 ---
@@ -186,7 +188,7 @@ The <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="233:1:5" line-data=" 
 
 </SwmSnippet>
 
-Now, lets zoom into this section of the flow:
+Now, let's zoom into this section of the flow:
 
 ```mermaid
 graph TD;
@@ -243,4 +245,4 @@ The <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="454:1:3" line-data=" 
 
 *This is an auto-generated document by Swimm AI 🌊 and has not yet been verified by a human*
 
-<SwmMeta version="3.0.0" repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa"><sup>Powered by [Swimm](https://staging.swimm.cloud/)</sup></SwmMeta>
+<SwmMeta version="3.0.0" repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa"><sup>Powered by [Swimm](https://app.swimm.io/)</sup></SwmMeta>
