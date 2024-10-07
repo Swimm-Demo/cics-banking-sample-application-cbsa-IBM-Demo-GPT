@@ -72,31 +72,59 @@ The user APIs are defined in the <SwmToken path="src/Z-OS-Connect-Customer-Servi
 
 ---
 
-## Enquire account
+### Page navigation
 
-The enquire account endpoint is defined in the <SwmToken path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="125:5:5" line-data="	public String showAcctForm(AccountEnquiryForm accountEnquiryForm)">`showAcctForm`</SwmToken> method.
+Most of the GET APIs in <SwmToken path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="54:4:4" line-data="public class WebController implements WebMvcConfigurer">`WebController`</SwmToken> are used for page navigation by returning the template name for the requested page.\
+For example the <SwmToken path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="125:5:5" line-data="	public String showAcctForm(AccountEnquiryForm accountEnquiryForm)">`showAcctForm`</SwmToken> function returns <SwmToken path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="129:3:3" line-data="		return ACCOUNT_ENQUIRY_FORM;">`ACCOUNT_ENQUIRY_FORM`</SwmToken>.
 
 ```java
 	// Get request for when first navigating to the page
 	@GetMapping("/enqacct")
 	public String showAcctForm(AccountEnquiryForm accountEnquiryForm)
+	{
+		// String relates to the page template found in
+		// /src/main/resources/templates
+		return ACCOUNT_ENQUIRY_FORM;
+	}
 ```
 
 ---
 
 </SwmSnippet>
 
-<SwmSnippet path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="234">
+<SwmSnippet path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="137">
+
+---
+
+## Enquire account
+
+The enquire account endpoint is defined in the <SwmToken path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="138:5:5" line-data="	public String returnAcct(@Valid AccountEnquiryForm accountEnquiryForm,">`returnAcct`</SwmToken> method.
+
+```
+	@PostMapping("/enqacct")
+	public String returnAcct(@Valid AccountEnquiryForm accountEnquiryForm,
+			BindingResult bindingResult, Model model)
+			throws JsonProcessingException
+	{
+```
+
+---
+
+</SwmSnippet>
+
+<SwmSnippet path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="241">
 
 ---
 
 ## Enquire customer
 
-The enquire customer endpoint is defined in the <SwmToken path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="235:5:5" line-data="	public String showCustForm(CustomerEnquiryForm customerEnquiryForm)">`showCustForm`</SwmToken> method.
+The enquire customer endpoint is defined in the <SwmToken path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="242:5:5" line-data="	public String returnCust(@Valid CustomerEnquiryForm customerEnquiryForm,">`returnCust`</SwmToken> method.
 
-```java
-	@GetMapping("/enqcust")
-	public String showCustForm(CustomerEnquiryForm customerEnquiryForm)
+```
+	@PostMapping("/enqcust")
+	public String returnCust(@Valid CustomerEnquiryForm customerEnquiryForm,
+			BindingResult bindingResult, Model model)
+			throws JsonProcessingException
 	{
 ```
 
@@ -104,107 +132,19 @@ The enquire customer endpoint is defined in the <SwmToken path="src/Z-OS-Connect
 
 </SwmSnippet>
 
-<SwmSnippet path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="301">
+<SwmSnippet path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="310">
 
 ---
 
 ## List all accounts belonging to a customer
 
-The list all accounts belonging to a customer endpoint is defined in the <SwmToken path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="304:5:5" line-data="	public String showListAccForm(CustomerEnquiryForm customerEnquiryForm)">`showListAccForm`</SwmToken> method.
+The list all accounts belonging to a customer endpoint is defined in the <SwmToken path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="311:5:5" line-data="	public String returnListAcc(@Valid CustomerEnquiryForm customerEnquiryForm,">`returnListAcc`</SwmToken> method.
 
-```java
-	// Similar form to enqCust since we're still only asking for a customer
-	// number
-	@GetMapping("/listacc")
 ```
-
----
-
-</SwmSnippet>
-
-<SwmSnippet path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="371">
-
----
-
-## Create an account
-
-The create an account endpoint is defined in the <SwmToken path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="373:5:5" line-data="	public String showCreateAccForm(CreateAccountForm createAccForm,">`showCreateAccForm`</SwmToken> method.
-
-```java
-	// 4. Create an account
-	@GetMapping("/createacc")
-	public String showCreateAccForm(CreateAccountForm createAccForm,
-```
-
----
-
-</SwmSnippet>
-
-<SwmSnippet path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="482">
-
----
-
-## Create a customer
-
-The create a customer endpoint is defined in the <SwmToken path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="483:5:5" line-data="	public String showCreateCustForm(CreateCustomerForm createCustForm,">`showCreateCustForm`</SwmToken> method.
-
-```java
-	@GetMapping("/createcust")
-	public String showCreateCustForm(CreateCustomerForm createCustForm,
-			Model model)
-```
-
----
-
-</SwmSnippet>
-
-<SwmSnippet path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="576">
-
----
-
-## Update an account
-
-The update an account endpoint is defined in the <SwmToken path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="577:5:5" line-data="	public String showUpdateAccountForm(UpdateAccountForm updateAccForm,">`showUpdateAccountForm`</SwmToken> method.
-
-```java
-	@GetMapping("/updateacc")
-	public String showUpdateAccountForm(UpdateAccountForm updateAccForm,
-			Model model)
-```
-
----
-
-</SwmSnippet>
-
-<SwmSnippet path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="679">
-
----
-
-## Update a customer
-
-The update a customer endpoint is defined in the <SwmToken path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="680:5:5" line-data="	public String showUpdateAccountForm(UpdateCustomerForm updateCustomerForm,">`showUpdateAccountForm`</SwmToken> method.
-
-```java
-	@GetMapping("/updatecust")
-	public String showUpdateAccountForm(UpdateCustomerForm updateCustomerForm,
-			Model model)
-```
-
----
-
-</SwmSnippet>
-
-<SwmSnippet path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="784">
-
----
-
-## Delete an account
-
-The delete an account endpoint is defined in the <SwmToken path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="785:5:5" line-data="	public String showDelAcctForm(AccountEnquiryForm accountEnquiryForm)">`showDelAcctForm`</SwmToken> method.
-
-```java
-	@GetMapping("/delacct")
-	public String showDelAcctForm(AccountEnquiryForm accountEnquiryForm)
+	@PostMapping("/listacc")
+	public String returnListAcc(@Valid CustomerEnquiryForm customerEnquiryForm,
+			BindingResult bindingResult, Model model)
+			throws JsonProcessingException
 	{
 ```
 
@@ -212,17 +152,120 @@ The delete an account endpoint is defined in the <SwmToken path="src/Z-OS-Connec
 
 </SwmSnippet>
 
-<SwmSnippet path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="849">
+<SwmSnippet path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="381">
+
+---
+
+## Create an account
+
+The create an account endpoint is defined in the <SwmToken path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="382:5:5" line-data="	public String processCreateAcc(@Valid CreateAccountForm createAccForm,">`processCreateAcc`</SwmToken> method.
+
+```
+	@PostMapping("/createacc")
+	public String processCreateAcc(@Valid CreateAccountForm createAccForm,
+			BindingResult bindingResult, Model model)
+			throws JsonProcessingException
+	{
+```
+
+---
+
+</SwmSnippet>
+
+<SwmSnippet path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="490">
+
+---
+
+## Create a customer
+
+The create a customer endpoint is defined in the <SwmToken path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="491:5:5" line-data="	public String processCreateCust(@Valid CreateCustomerForm createCustForm,">`processCreateCust`</SwmToken> method.
+
+```
+	@PostMapping("/createcust")
+	public String processCreateCust(@Valid CreateCustomerForm createCustForm,
+			BindingResult bindingResult, Model model)
+			throws JsonProcessingException
+	{
+```
+
+---
+
+</SwmSnippet>
+
+<SwmSnippet path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="587">
+
+---
+
+## Update an account
+
+The update an account endpoint is defined in the <SwmToken path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="588:5:5" line-data="	public String processCreateAcc(@Valid UpdateAccountForm updateAccountForm,">`processCreateAcc`</SwmToken> method.
+
+```
+	@PostMapping("/updateacc")
+	public String processCreateAcc(@Valid UpdateAccountForm updateAccountForm,
+			BindingResult bindingResult, Model model)
+			throws JsonProcessingException
+	{
+```
+
+---
+
+</SwmSnippet>
+
+<SwmSnippet path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="688">
+
+---
+
+## Update a customer
+
+The update a customer endpoint is defined in the <SwmToken path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="689:5:5" line-data="	public String processUpdateCust(">`processUpdateCust`</SwmToken> method.
+
+```
+	@PostMapping("/updatecust")
+	public String processUpdateCust(
+			@Valid UpdateCustomerForm updateCustomerForm,
+			BindingResult bindingResult, Model model)
+			throws JsonProcessingException
+	{
+```
+
+---
+
+</SwmSnippet>
+
+<SwmSnippet path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="791">
+
+---
+
+## Delete an account
+
+The delete an account endpoint is defined in the <SwmToken path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="792:5:5" line-data="	public String deleteAcct(@Valid AccountEnquiryForm accountEnquiryForm,">`deleteAcct`</SwmToken> method.
+
+```
+	@PostMapping("/delacct")
+	public String deleteAcct(@Valid AccountEnquiryForm accountEnquiryForm,
+			BindingResult bindingResult, Model model)
+			throws JsonProcessingException
+	{
+```
+
+---
+
+</SwmSnippet>
+
+<SwmSnippet path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" line="856">
 
 ---
 
 ## Delete a customer
 
-The delete a customer endpoint is defined in the <SwmToken path="src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="850:5:5" line-data="	public String showDelCustForm(CustomerEnquiryForm customerEnquiryForm)">`showDelCustForm`</SwmToken> method.
+The delete a customer endpoint is defined in the <SwmToken path="/src/Z-OS-Connect-Customer-Services-Interface/src/main/java/com/ibm/cics/cip/bank/springboot/customerservices/controllers/WebController.java" pos="857:5:5" line-data="	public String deleteCust(@Valid CustomerEnquiryForm customerEnquiryForm,">`deleteCust`</SwmToken> method.
 
-```java
-	@GetMapping("/delcust")
-	public String showDelCustForm(CustomerEnquiryForm customerEnquiryForm)
+```
+	@PostMapping("/delcust")
+	public String deleteCust(@Valid CustomerEnquiryForm customerEnquiryForm,
+			BindingResult bindingResult, Model model)
+			throws JsonProcessingException
 	{
 ```
 

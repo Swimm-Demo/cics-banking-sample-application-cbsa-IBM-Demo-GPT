@@ -46,6 +46,10 @@ The program starts with the <SwmToken path="/src/base/cobol_src/ACCTCTRL.cbl" po
 
 This section retrieves the number of accounts for a given sort code from a database.
 
+It executes an SQL statement that selects the count of accounts from the <SwmToken path="/src/base/cobol_src/ACCTCTRL.cbl" pos="168:3:3" line-data="              FROM ACCOUNT">`ACCOUNT`</SwmToken> table where the <SwmToken path="/src/base/cobol_src/ACCTCTRL.cbl" pos="169:3:3" line-data="              WHERE ACCOUNT_SORTCODE = :HV-ACCOUNT-SORTCODE">`ACCOUNT_SORTCODE`</SwmToken> matches the sort code.
+
+If the query was successful, the code moves the number of accounts into the <SwmToken path="/src/base/cobol_src/ACCTCTRL.cbl" pos="174:13:17" line-data="             MOVE HV-NUMBER-OF-ACCOUNTS TO NUMBER-OF-ACCOUNTS">`NUMBER-OF-ACCOUNTS`</SwmToken> field. Otherwise, it moves the SQL code into the <SwmToken path="/src/base/cobol_src/ACCTCTRL.cbl" pos="177:7:9" line-data="             MOVE SQLCODE TO SQLCODE-DISPLAY">`SQLCODE-DISPLAY`</SwmToken> field and sets the <SwmToken path="/src/base/cobol_src/ACCTCTRL.cbl" pos="176:9:15" line-data="             MOVE &#39;N&#39; TO ACCOUNT-CONTROL-SUCCESS-FLAG">`ACCOUNT-CONTROL-SUCCESS-FLAG`</SwmToken> to <SwmToken path="/src/base/cobol_src/ACCTCTRL.cbl" pos="176:4:4" line-data="             MOVE &#39;N&#39; TO ACCOUNT-CONTROL-SUCCESS-FLAG">`N`</SwmToken>.
+
 ```
        GET-NUMBER-OF-ACCOUNTS-DB2 SECTION.
        WCD010.
@@ -79,4 +83,4 @@ This section retrieves the number of accounts for a given sort code from a datab
 
 *This is an auto-generated document by Swimm AI 🌊 and has not yet been verified by a human*
 
-<SwmMeta version="3.0.0" repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa"><sup>Powered by [Swimm](https://app.swimm.io/)</sup></SwmMeta>
+<SwmMeta version="3.0.0" repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa"><sup>Powered by [Swimm](https://staging.swimm.cloud/)</sup></SwmMeta>

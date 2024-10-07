@@ -19,7 +19,50 @@ const CustomerDetailsPage = () => {
 
 </SwmSnippet>
 
-# Customer Data Retrieval and Display Functions
+## Customer Data Retrieval
+
+```mermaid
+graph TD
+    submitButtonHandler("submitButtonHandler") --> 
+searchbynumber["Search by number?"]
+
+    searchbynumber --> |Yes| getCustomerByNum("getCustomerByNum")
+
+    searchbynumber --> |No| searchbyname["Search by Name?"]
+
+    searchbyname --> |Yes| getCustomersByName("getCustomersByName")
+    getCustomerByNum --> getAccountsForCustomers("getAccountsForCustomers")
+    getCustomersByName --> getAccountsForCustomers
+
+
+```
+
+<SwmSnippet path="/src/bank-application-frontend/src/content/CustomerDetailsPage/CustomerDetailsPage.js" line="47">
+
+---
+
+### <SwmToken path="/src/bank-application-frontend/src/content/CustomerDetailsPage/CustomerDetailsPage.js" pos="47:3:3" line-data="  function submitButtonHandler() {">`submitButtonHandler`</SwmToken>
+
+This function handles the submission of a search query. It calls <SwmToken path="/src/bank-application-frontend/src/content/CustomerDetailsPage/CustomerDetailsPage.js" pos="51:1:1" line-data="      getCustomerByNum(searchQuery)">`getCustomerByNum`</SwmToken> for searches by customer number or <SwmToken path="/src/bank-application-frontend/src/content/CustomerDetailsPage/CustomerDetailsPage.js" pos="55:1:1" line-data="      getCustomersByName(searchQuery)">`getCustomersByName`</SwmToken> for searches by customer name.
+
+```javascript
+  function submitButtonHandler() {
+    let searchQuery;
+    if (numSearch !== "") {
+      searchQuery = numSearch
+      getCustomerByNum(searchQuery)
+    }
+    else if (nameSearch !== "") {
+      searchQuery = nameSearch
+      getCustomersByName(searchQuery)
+    }
+    setTableOpened(wasOpened => !wasOpened)
+  }
+```
+
+---
+
+</SwmSnippet>
 
 <SwmSnippet path="/src/bank-application-frontend/src/content/CustomerDetailsPage/CustomerDetailsPage.js" line="75">
 

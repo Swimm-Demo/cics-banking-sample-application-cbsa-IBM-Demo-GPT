@@ -3,9 +3,16 @@ title: Overview
 ---
 The CICS Bank Sample Application (CBSA) simulates the operation of a bank from the point of view of the Bank Teller. It can be used for teaching, testing, and as a conversation piece for application development lifecycle discussions.
 
+The CICS Bank Sample Application (CBSA) is made up of several parts:&nbsp;
+
+- base/COBOL installation, which must be installed before the other parts.&nbsp;
+- Liberty User Interface.
+- Payment User Interface.
+- Customer Services User Interface.
+
 ## Main Components
 
-### Bank Backend
+### Bank Backend (base)
 
 The Bank Backend is responsible for handling the backend functionality of the bank application.
 
@@ -13,7 +20,7 @@ The Bank Backend is responsible for handling the backend functionality of the ba
 - <SwmLink doc-title="Program INQACCCU">[Program INQACCCU](/.swm/program-inqacccu.c1txv.sw.md)</SwmLink>
 - <SwmLink doc-title="Program ACCTCTRL">[Program ACCTCTRL](/.swm/program-acctctrl.uj6lc.sw.md)</SwmLink>
 
-### Carbon React Front-End
+### Carbon React Front-End (Liberty Use interface)
 
 Carbon React Front-End Framework for CBSA
 
