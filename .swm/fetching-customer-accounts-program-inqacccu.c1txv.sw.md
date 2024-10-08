@@ -124,7 +124,7 @@ This section retrieves customer information by linking to the INQCUST program, w
 
 </SwmSnippet>
 
-After performing <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="829:1:3" line-data="       CUSTOMER-CHECK SECTION." repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa">`CUSTOMER-CHECK`</SwmToken>, in case it was succesasful, <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="194:1:1" line-data="       PREMIERE SECTION." repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa">`PREMIERE`</SwmToken> moves on to perform <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="233:1:5" line-data="       READ-ACCOUNT-DB2 SECTION." repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa">`READ-ACCOUNT-DB2`</SwmToken>.
+After performing <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="829:1:3" line-data="       CUSTOMER-CHECK SECTION." repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa">`CUSTOMER-CHECK`</SwmToken>, in case it was successful, <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="194:1:1" line-data="       PREMIERE SECTION." repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa">`PREMIERE`</SwmToken> moves on to perform <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="233:1:5" line-data="       READ-ACCOUNT-DB2 SECTION." repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa">`READ-ACCOUNT-DB2`</SwmToken>.
 
 <SwmSnippet path="/src/base/cobol_src/INQACCCU.cbl" line="233" repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==">
 
@@ -132,15 +132,15 @@ After performing <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="829:1:3"
 
 ## <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="233:1:5" line-data="       READ-ACCOUNT-DB2 SECTION." repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa">`READ-ACCOUNT-DB2`</SwmToken>
 
-This section is responsible for retrieving accounts from the account datastore using the customer number and sort code from the COMMAREA.
+This section is responsible for retrieving accounts from the account datastore using the customer number and sort code from the <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="224:15:15" line-data="      * Return the ACCOUNT data to the COMMAREA" repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa-IBM-Demo">`COMMAREA`</SwmToken>.
 
 It checks if the cursor open failed. If so, the code performs error handling by performing a synpoint rollback and linking to an abend handler program.
 
 After the cursor is opened, the code retrieves each of the accounts associated with the customer by calling <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="454:1:3" line-data="       FETCH-DATA SECTION." repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa-IBM-Demo">`FETCH-DATA`</SwmToken>.&nbsp;
 
-After retrieving the data, the code closes the cursor. If there is an error when closing the cursor, the code performs error handling by performing a synpoint rollback and linking to an abend handler program.
+After retrieving the data, the code closes the cursor. If there is an error when closing the cursor, the code performs error handling again - by performing a synpoint rollback and linking to an abend handler program.
 
-Finally, the code moves a value of 'Y' to the <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="448:9:11" line-data="           MOVE &#39;Y&#39; TO COMM-SUCCESS." repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa-IBM-Demo">`COMM-SUCCESS`</SwmToken> field, indicating a successful communication with the database.
+Finally, the code moves a value of <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="448:4:4" line-data="           MOVE &#39;Y&#39; TO COMM-SUCCESS." repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa-IBM-Demo">`Y`</SwmToken> to the <SwmToken path="/src/base/cobol_src/INQACCCU.cbl" pos="448:9:11" line-data="           MOVE &#39;Y&#39; TO COMM-SUCCESS." repo-id="Z2l0aHViJTNBJTNBY2ljcy1iYW5raW5nLXNhbXBsZS1hcHBsaWNhdGlvbi1jYnNhLUlCTS1EZW1vJTNBJTNBU3dpbW0tRGVtbw==" repo-name="cics-banking-sample-application-cbsa-IBM-Demo">`COMM-SUCCESS`</SwmToken> field, indicating a successful communication with the database.
 
 ```cobol
        READ-ACCOUNT-DB2 SECTION.
@@ -193,4 +193,4 @@ If there is an error during the fetch operation, the code performs error handlin
 
 *This is an auto-generated document by Swimm AI 🌊 and has not yet been verified by a hum*
 
-<SwmMeta version="3.0.0"><sup>Powered by [Swimm](https://staging.swimm.cloud/)</sup></SwmMeta>
+<SwmMeta version="3.0.0"><sup>Powered by [Swimm](https://app.swimm.io/)</sup></SwmMeta>
